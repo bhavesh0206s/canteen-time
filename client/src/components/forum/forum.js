@@ -101,7 +101,8 @@ const Forum = ({ match }) => {
       setHideMain(false)
     }
   }, [location.pathname])
-  console.log(openAddTopic)
+
+
   return (
     <div className={classes.root} style={{ marginTop: 20 }}>
       <CssBaseline />

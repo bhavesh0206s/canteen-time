@@ -19,7 +19,7 @@ function App () {
         {/* <Alert /> */}
         <Route exact path='/' component={DashBoard} />
         <Switch>
-          <Route exact path='/forum' component={Forum} />
+          <Route path='/forum' component={Forum} />
           <Route exact path='/announcement' component={Announcement} />
 
           {/* <Route exact path="/forum/:topics" component={TopicDetails} /> */}
