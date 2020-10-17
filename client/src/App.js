@@ -1,13 +1,14 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/auth/login";
-import Header from "./components/common/appBar";
-import Forum from "./components/forum/forum";
-import SelectedTopicDetails from "./components/forum/selectedTopicDetails";
-import TopicDetails from "./components/forum/topicDetails";
-import DashBoard from "./components/student/dashboard/DashBoard";
+import React, { Fragment } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Login from './components/auth/login'
+import Header from './components/common/header'
+import Forum from './components/forum/forum'
+import SelectedTopicDetails from './components/forum/selectedTopicDetails'
+import TopicDetails from './components/forum/topicDetails'
+import DashBoard from './components/student/dashboard/DashBoard'
 import NavBar from './components/common/navBar'
-function App() {
+import Announcement from './components/student/announcement/announcment'
+function App () {
   return (
     // <div>Helo bhai log kaise ho</div>
     <Router>
@@ -18,8 +19,8 @@ function App() {
         {/* <Alert /> */}
         <Route exact path='/' component={DashBoard} />
         <Switch>
-          <Route exact path='/' component={NavBar} />
-          <Route  exact path="/forum" component={Forum} />
+          <Route exact path='/forum' component={Forum} />
+          <Route exact path='/announcement' component={Announcement} />
 
           {/* <Route exact path="/forum/:topics" component={TopicDetails} /> */}
           {/* <Route
@@ -43,4 +44,4 @@ function App() {
     </Router>
   )
 }
-export default App;
+export default App

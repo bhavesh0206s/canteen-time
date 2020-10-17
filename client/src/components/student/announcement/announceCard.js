@@ -24,7 +24,7 @@ const AnnouncementCard = props => {
             </Grid>
 
             <Typography gutterBottom variant='h5' component='h4'>
-              {props.announcment}
+              {props.announcement}
             </Typography>
           </CardContent>
         </CardActionArea>
