@@ -1,5 +1,4 @@
 import React from 'react'
-<<<<<<< HEAD
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -105,23 +104,3 @@ export default function NavBar () {
     </div>
   )
 }
-=======
-import { AppBar, Button, Container, Toolbar } from '@material-ui/core'
-const NavBar = () => {
-  return (
-    <Container>
-      <AppBar>
-        <Toolbar>
-          {/* Link dashboard and forum buttons to their respective pages and add function to Log-out button */}
-
-          <Button color='inherit'>Dashboad</Button>
-          <Button color='inherit'>Forum</Button>
-          <Button color='inherit'>Log-out</Button>
-        </Toolbar>
-      </AppBar>
-    </Container>
-  )
-}
-
-export default NavBar
->>>>>>> ccf7a38741a11a984eb6591f63a1fda607b46f67
