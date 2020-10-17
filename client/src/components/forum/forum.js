@@ -1,127 +1,127 @@
-import React, { Fragment, useState, useEffect } from "react";
-import { Link, Route, Router, Switch, useLocation } from "react-router-dom";
-import Topics from "./topics";
+import React, { Fragment, useState, useEffect } from 'react'
+import { Link, Route, Router, Switch, useLocation } from 'react-router-dom'
+import Topics from './topics'
 import ForumPost from './forumPost'
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import TopicDetails from "./topicDetails";
-import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
-import { Button } from "@material-ui/core";
-import AddTopic from "./addTopic";
-import SelectedTopicDetails from "./selectedTopicDetails";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import IconButton from '@material-ui/core/IconButton';
+import Box from '@material-ui/core/Box'
+import { makeStyles } from '@material-ui/core/styles'
+import Drawer from '@material-ui/core/Drawer'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import TopicDetails from './topicDetails'
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline'
+import { Button } from '@material-ui/core'
+import AddTopic from './addTopic'
+import SelectedTopicDetails from './selectedTopicDetails'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import IconButton from '@material-ui/core/IconButton'
 
 const defaultProps = {
   bgcolor: 'background.paper',
   width: '100%',
   m: 1,
   style: { width: '5rem', height: '5rem' },
-  borderColor: 'text.primary',
-};
+  borderColor: 'text.primary'
+}
 
-const drawerWidth = 240;
+const drawerWidth = 240
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
     marginLeft: drawerWidth,
+    background: 'linear-gradient(to right, #001510, #00bf8f)',
   },
   drawer: {
     width: drawerWidth,
-    flexShrink: 0,
+    flexShrink: 0
   },
   drawerPaper: {
-    width: drawerWidth,
+    width: drawerWidth
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
-    padding: theme.spacing(3),
+    padding: theme.spacing(3)
   },
   backBtn: {
     marginLeft: 20,
     marginTop: 20
-  }
-}));
+  },
+}))
 
-const recentQandA= [
+const recentQandA = [
   {
-    id: "abc123",
-    topic: "maths",
+    id: 'abc123',
+    topic: 'maths',
     name: 'Bhavesh Suthar',
-    que: "why maths seems so hard?",
+    que: 'why maths seems so hard?',
     repliescount: 3,
-    upvotes: 10,
+    upvotes: 10
   },
   {
-    id: "abc124",
-    topic: "physics",
+    id: 'abc124',
+    topic: 'physics',
     name: 'Bhavesh Suthar',
-    que: "why physics seems so hard?",
+    que: 'why physics seems so hard?',
     repliescount: 3,
-    upvotes: 10,
+    upvotes: 10
   },
   {
-    id: "abc125",
-    topic: "history",
+    id: 'abc125',
+    topic: 'history',
     name: 'Bhavesh Suthar',
-    que: "why history seems so hard?",
+    que: 'why history seems so hard?',
     repliescount: 3,
-    upvotes: 10,
-  },
-];
+    upvotes: 10
+  }
+]
 
 const Forum = ({ match }) => {
-  const classes = useStyles();
-  const location = useLocation();
-  const [hideMain, setHideMain] = useState(false);
-  const [openAddTopic, setOpenAddTopic] = useState(false);
+  const classes = useStyles()
+  const location = useLocation()
+  const [hideMain, setHideMain] = useState(false)
+  const [openAddTopic, setOpenAddTopic] = useState(false)
 
   const handleAddDrawer = () => {
     setOpenAddTopic(!openAddTopic)
   }
 
-  
   useEffect(() => {
-    if(location.pathname !== '/forum'){
+    if (location.pathname !== '/forum') {
       setHideMain(true)
-    }else{
+    } else {
       setHideMain(false)
     }
-  },[location.pathname])
+  }, [location.pathname])
   console.log(openAddTopic)
   return (
     <div className={classes.root} style={{ marginTop: 20 }}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
+      <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-        <Button color='inherit' href='http://localhost:3000/'>
+          <Button color='inherit' href='http://localhost:3000/'>
             Dashboard
           </Button>
           <Button color='inherit' href='http://localhost:3000/forum'>
             Forum
           </Button>
-          <Button color='inherit'>
+          <Button color='inherit' href='http://localhost:3000/announcement'>
             Announcment
           </Button>
-          <div style={{paddingLeft: 30}}>
+          <div style={{ paddingLeft: 30 }}>
             <Button
-              variant="contained"
-              color="default"
+              variant='contained'
+              color='default'
               className={classes.button}
-              startIcon={<AddCircleOutlineIcon/>}
+              startIcon={<AddCircleOutlineIcon />}
               onClick={handleAddDrawer}
             >
               New Topic
@@ -130,45 +130,44 @@ const Forum = ({ match }) => {
         </Toolbar>
       </AppBar>
       {openAddTopic && (
-        <AddTopic openAddTopic={openAddTopic} handleAddDrawer={handleAddDrawer}/>
+        <AddTopic
+          openAddTopic={openAddTopic}
+          handleAddDrawer={handleAddDrawer}
+        />
       )}
       <Drawer
         className={classes.drawer}
-        variant="permanent"
+        variant='permanent'
         classes={{
-          paper: classes.drawerPaper,
+          paper: classes.drawerPaper
         }}
-        anchor="left"
+        anchor='left'
       >
-        <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit'}}>
-          <IconButton className={classes.backBtn} color="primary">
+        <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <IconButton className={classes.backBtn} color='primary'>
             <ArrowBackIcon />
           </IconButton>
         </Link>
         <div className={classes.toolbar} />
         <Divider />
-          <Topics />
+        <Topics />
         <Divider />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        <div className="container">
-          {!hideMain && (
-            recentQandA.map((item) => (
-              <ForumPost item={item}/>
-            ))
-          )}
+        <div className='container'>
+          {!hideMain && recentQandA.map(item => <ForumPost item={item} />)}
           <Switch>
-            <Route exact path="/forum/:topics" component={TopicDetails} />
-            <Route path="/forum/:topics/:id" component={SelectedTopicDetails} />
+            <Route exact path='/forum/:topics' component={TopicDetails} />
+            <Route path='/forum/:topics/:id' component={SelectedTopicDetails} />
           </Switch>
         </div>
       </main>
-    </div>  
+    </div>
     // <div>
     //   <Link to={`/forums/${topic}`}>{topic}</Link>
     // </div>
-  );
+  )
   //     <h1 style={{textAlign: 'center'}}>Forum</h1>
   //     <Box borderBottom={1} {...defaultProps} />
   //     <div style={{ display: "flex" }}>
@@ -183,5 +182,5 @@ const Forum = ({ match }) => {
   //       </div>
   //     </div>
   // );
-};
-export default Forum;
+}
+export default Forum

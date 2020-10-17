@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import Box from '@material-ui/core/Box'
 import DashBoard from '../teacher/dashboard/DashBoard'
 import AnnounceCard from '../teacher/announcement/announceCard'
-import Header from './appBar'
+import Header from './header'
 import { Link } from 'react-router-dom'
 import Forum from '../forum/forum'
 

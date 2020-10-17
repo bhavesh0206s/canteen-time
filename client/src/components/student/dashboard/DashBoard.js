@@ -1,26 +1,16 @@
 import { Container, Grid } from '@material-ui/core'
 import React from 'react'
-import SubCard from './subCard'
+import SubCard from '../subject/subCard'
+import Header from '../../common/header'
+import Subject from '../subject/subject'
 
 const DashBoard = ({ match }) => {
   return (
     <div>
       <Container>
+        <Header />
         <div style={{ height: 75 }} />
-        <Grid container spacing={2} justify='center'>
-          {/* replace this and Loop/Map through all subject overhere */}
-          <SubCard subject='ADC' teacher='Prof. Sarosh Dastoor' />
-          <SubCard subject='RA' teacher='Prof. Neetin Patel' />
-          <SubCard subject='AM' teacher='Prof. Pritesh Saksena' />
-          <SubCard subject='CPD' teacher='Prof. Vandna Shah' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-          <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
-        </Grid>
+        <Subject />
       </Container>
     </div>
   )
