@@ -1,40 +1,43 @@
-import { AppBar, Button, Container, Grid, IconButton } from '@material-ui/core'
-import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
 import React from 'react'
-import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import { Button, Grid } from '@material-ui/core'
+import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
-import MaterialList from './materiallist'
+import Card from '@material-ui/core/Card'
+import CardActionArea from '@material-ui/core/CardActionArea'
+import CardActions from '@material-ui/core/CardActions'
+import CardContent from '@material-ui/core/CardContent'
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345
-  },
-  media: {
-    height: 140
-  },
-  gradient: {
-    background: 'linear-gradient(to right, #001510, #00bf8f)'
+    maxWidth: 350,
+    minWidth: 300
   }
 })
 
-const MaterialPage = ({ location: { state } }) => {
+const MaterialCard = ({ filename, filelink }) => {
   const classes = useStyles()
-  console.log(state)
   return (
-    <Container>
-      <AppBar className={classes.gradient}>
-        <Toolbar>
-          <IconButton color='inherit'>
-            <ArrowBackIcon />
-          </IconButton>
-          <Typography variant='h6'>{state.classRoomName}</Typography>
-        </Toolbar>
-      </AppBar>
-      <div style={{ height: 75 }} />
-      <MaterialList state={state} />
-    </Container>
+    <Grid item>
+      <Card className={classes.root}>
+        <CardActionArea>
+          <CardContent>
+            <Typography gutterBottom variant='h5' component='h2'>
+              {filename}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+          <Button size='small' color='primary' href={filelink} target='_blank'>
+            Download
+          </Button>
+        </CardActions>
+      </Card>
+    </Grid>
   )
 }
 
-export default MaterialPage
+MaterialCard.defaultProps = {
+  fileName: 'Study Material'
+}
+
+export default MaterialCard

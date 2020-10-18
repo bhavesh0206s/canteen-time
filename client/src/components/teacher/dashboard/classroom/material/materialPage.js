@@ -5,6 +5,7 @@ import React from 'react'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import { makeStyles } from '@material-ui/core/styles'
 import MaterialList from './materiallist'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles({
   root: {
@@ -18,21 +19,23 @@ const useStyles = makeStyles({
   }
 })
 
-const MaterialPage = props => {
+const MaterialPage = ({ location: { state } }) => {
   const classes = useStyles()
-
+  console.log(state)
   return (
     <Container>
       <AppBar className={classes.gradient}>
         <Toolbar>
           <IconButton color='inherit'>
-            <ArrowBackIcon />
+            <Link to='/teacher/dashboard'>
+              <ArrowBackIcon />
+            </Link>
           </IconButton>
-          <Typography variant='h6'>{props.subject}</Typography>
+          <Typography variant='h6'>{state.classRoomName}</Typography>
         </Toolbar>
       </AppBar>
       <div style={{ height: 75 }} />
-      <MaterialList />
+      <MaterialList state={state} />
     </Container>
   )
 }
