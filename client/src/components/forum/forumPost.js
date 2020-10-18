@@ -22,7 +22,7 @@ const ForumPost = ({item}) => {
         </Link>
         <div className="card-user">
           <div className="user-info">
-            <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/736716/pexels-photo-736716.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" />
+            <Avatar alt="Remy Sharp" src="https://source.unsplash.com/random/200x200?sig=1" />
             <h4>{item.name}</h4>
           </div>
           <Link to={`/forum/${item.postType}/${item._id.toString()}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>

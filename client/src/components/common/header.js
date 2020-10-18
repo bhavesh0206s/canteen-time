@@ -40,7 +40,7 @@ export default function Header (props) {
               Dashboard
             </Button>
           </Link>
-          <Link to='/student/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button color='inherit'>
               Forum
             </Button>

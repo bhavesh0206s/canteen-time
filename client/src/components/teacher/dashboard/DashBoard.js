@@ -15,7 +15,7 @@ const DashBoardTeacher = ({ match }) => {
   return (
     <div>
       <Container>
-        <Grid container spacing={4} justify='center'>
+        <Grid container justify='center'>
           <Classrooms match={match} />
         </Grid>
       </Container>

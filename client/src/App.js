@@ -30,6 +30,7 @@ function App () {
           {/* <Route exact path="/dashboard" component={DashBoard} /> */}
           <Route exact path='/student/dashboard' component={DashBoardStudent} />
           <Route exact path='/teacher/dashboard' component={DashBoardTeacher} />
+          <Route path='/forum' component={Forum} />
           <Route
             exact
             path='/teacher/classroom/:classroomcode'
@@ -56,7 +57,6 @@ function App () {
             component={AnnouncementTeacher}
           />
 
-          <Route path='/forum' component={Forum} />
           {/* <Route exact path="/profiles" component={Profiles} /> */}
           {/* <Route exact path="/profile/:id" component={Profile} /> */}
           {/* <PrivateRoute exact path="/dashboard" component={Dashboard} />

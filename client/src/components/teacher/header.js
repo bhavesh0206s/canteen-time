@@ -34,18 +34,17 @@ export default function Header (props) {
     <div className={classes.root}>
       <AppBar className={classes.gradient} position='static'>
         <Toolbar>
-          <Button
-            color='inherit'
-            href='http://localhost:3000/teacher/dashboard'
-          >
-            Dashboard
-          </Button>
-          <Link to='/teacher/announcement'>
+          <Link to='/teacher/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit' > Dashboard</Button>
+          </Link>
+          <Link to='/teacher/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button color='inherit'>Announcement</Button>
           </Link>
-          <Button onClick={handleLogout} color='secondary'>
-            Logout
-          </Button>
+          <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button onClick={handleLogout} variant='contained' color='secondary'>
+              Logout
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>
