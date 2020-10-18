@@ -4,6 +4,8 @@ import Drawer from '@material-ui/core/Drawer';
 import { Button, Menu,  MenuItem, TextField } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AssignmentTurnedInSharpIcon from '@material-ui/icons/AssignmentTurnedInSharp';
+import { useDispatch, useSelector } from 'react-redux';
+import { AddReply } from '../../redux/actions/forum';
 
 const useStyles = makeStyles((theme) =>( {
   list: {
@@ -34,23 +36,25 @@ const subjects = [
   'Computer'
 ]
 
-const Reply = ({showReplyModal, handleReplyClick}) => {
+const Reply = ({showReplyModal, handleReplyClick, id, type}) => {
   const classes = useStyles();
-
-  const [selectedTopic, setSelectedTopic] = useState('')
+  const dispatch = useDispatch();
+  const [reply, setReply] = useState('');
   const [anchorEl, setAnchorEl] = useState(null);
-
+  
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = (e) => {
-    setSelectedTopic(e.target.textContent)
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const handleSubmit = () => {
-
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(AddReply(type, reply, id));
+    handleClose();
+    handleReplyClick()
   }
 
   return (
@@ -59,7 +63,7 @@ const Reply = ({showReplyModal, handleReplyClick}) => {
         <div style={{marginLeft: 20}}>
           <h2>Reply</h2>
         </div>
-        <form className={classes.root} noValidate autoComplete="on">
+        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="on">
           <div>
             <TextField
               id="outlined-multiline-static"
@@ -68,11 +72,14 @@ const Reply = ({showReplyModal, handleReplyClick}) => {
               rows={4}
               className={classes.textField}
               variant="outlined"
+              required
+              value={reply}
+              onChange={(e) => setReply(e.target.value)}
             />
           </div>
           <div style={{margin: 20, display: 'flex'}}>
             <div>
-              <Button variant="contained" color="primary" onClick={handleSubmit}>
+              <Button variant="contained" color="primary" type="submit" >
                 <AssignmentTurnedInSharpIcon />
                 Submit
               </Button>

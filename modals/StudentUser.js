@@ -20,6 +20,11 @@ const StudentUserSchema = new mongoose.Schema({
   school: {
     type: String,
   },
+  classroomcodes: [
+    {
+      classRoomCode: String,
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

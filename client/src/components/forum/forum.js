@@ -59,32 +59,32 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const recentQandA = [
-  {
-    id: 'abc123',
-    topic: 'maths',
-    name: 'Bhavesh Suthar',
-    que: 'why maths seems so hard?',
-    repliescount: 3,
-    upvotes: 10
-  },
-  {
-    id: 'abc124',
-    topic: 'physics',
-    name: 'Bhavesh Suthar',
-    que: 'why physics seems so hard?',
-    repliescount: 3,
-    upvotes: 10
-  },
-  {
-    id: 'abc125',
-    topic: 'history',
-    name: 'Bhavesh Suthar',
-    que: 'why history seems so hard?',
-    repliescount: 3,
-    upvotes: 10
-  }
-]
+// const recentQandA = [
+//   {
+//     id: 'abc123',
+//     topic: 'maths',
+//     name: 'Bhavesh Suthar',
+//     que: 'why maths seems so hard?',
+//     repliescount: 3,
+//     upvotes: 10
+//   },
+//   {
+//     id: 'abc124',
+//     topic: 'physics',
+//     name: 'Bhavesh Suthar',
+//     que: 'why physics seems so hard?',
+//     repliescount: 3,
+//     upvotes: 10
+//   },
+//   {
+//     id: 'abc125',
+//     topic: 'history',
+//     name: 'Bhavesh Suthar',
+//     que: 'why history seems so hard?',
+//     repliescount: 3,
+//     upvotes: 10
+//   }
+// ]
 
 const Forum = ({ match }) => {
   const classes = useStyles();
@@ -92,21 +92,18 @@ const Forum = ({ match }) => {
   const dispatch = useDispatch();
   const [hideMain, setHideMain] = useState(false);
   const [openAddTopic, setOpenAddTopic] = useState(false);
-  const forumPost = useSelector(state => state.forum);
+  const forumPost = useSelector(state => state.forum.allPosts);
 
   const handleAddDrawer = () => {
     setOpenAddTopic(!openAddTopic)
   }
 
   useEffect(() => {
-    dispatch(fetchAllForumPost())
-  },[])
-
-  useEffect(() => {
     if (location.pathname !== '/forum') {
       setHideMain(true)
     } else {
       setHideMain(false)
+      dispatch(fetchAllForumPost())
     }
   }, [location.pathname])
 
@@ -131,7 +128,7 @@ const Forum = ({ match }) => {
             </Button>
           </Link>
           <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='secondary'>
+            <Button color='secondary' variant='contained'>
               Logout
             </Button>
           </Link>
@@ -162,14 +159,14 @@ const Forum = ({ match }) => {
         }}
         anchor='left'
       >
-        <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+        <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
           <IconButton className={classes.backBtn} color='primary'>
             <ArrowBackIcon />
           </IconButton>
         </Link>
         <div className={classes.toolbar} />
         <Divider />
-        <Topics />
+          <Topics />
         <Divider />
       </Drawer>
       <main className={classes.content}>

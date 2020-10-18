@@ -2,7 +2,7 @@ import { Container, Grid } from '@material-ui/core'
 import React from 'react'
 import Header from '../header'
 import Classrooms from './classroom/classrooms'
-const DashBoard = ({ match }) => {
+const DashBoardTeacher = ({ match }) => {
   return (
     <div>
       <Container>
@@ -15,4 +15,4 @@ const DashBoard = ({ match }) => {
   )
 }
 
-export default DashBoard
+export default DashBoardTeacher

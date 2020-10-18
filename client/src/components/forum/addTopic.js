@@ -4,7 +4,7 @@ import Drawer from '@material-ui/core/Drawer';
 import { Button, Menu,  MenuItem, TextField } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AssignmentTurnedInSharpIcon from '@material-ui/icons/AssignmentTurnedInSharp';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addForumPost } from '../../redux/actions/forum';
 
 const useStyles = makeStyles((theme) =>( {
@@ -39,6 +39,7 @@ const subjects = [
 const AddTopic = ({openAddTopic, handleAddDrawer}) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const subjects = useSelector(state => state.forum.subForumList);
   const [selectedTopic, setSelectedTopic] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
   const [formData, setFormData] = useState({

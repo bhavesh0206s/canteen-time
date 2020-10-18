@@ -2,8 +2,42 @@ const express = require('express');
 const verify = require('../middleware/verify');
 const ForumPost = require('../modals/ForumPost');
 const StudentUser = require('../modals/StudentUser');
+const SubForum = require('../modals/SubForum');
 
 module.exports = (app) => {
+
+  app.post('/api/forum/:subForum', verify,async(req, res) =>{
+    try{
+      const subForumTopic = req.params.subForum;
+      console.log(subForumTopic)
+      let subForum = await SubForum.findOne();
+      if(!subForum){
+        subForum = new SubForum();
+        await subForum.save();
+      }
+
+      subForum.subForumTopics.push(subForumTopic);
+      
+      await subForum.save();
+
+      res.json(subForum)
+    }catch (err) {
+      res.status(500).send('Server Error');
+      console.error(err.message);
+    }
+  })
+
+  app.get('/api/forum/sub-forums', verify,async(req, res) =>{
+    try{
+
+      const subForum = await SubForum.findOne();
+
+      res.json(subForum.subForumTopics)
+    }catch (err) {
+      res.status(500).send('Server Error');
+      console.error(err.message);
+    }
+  })
 
   app.post(
     '/api/forum/post/:type',
@@ -46,11 +80,11 @@ module.exports = (app) => {
   });
 
   app.get('/api/forum/post/:type', verify, async (req, res) => {
+
     try {
       const postType = req.params.type;
-     
-      let posts = await ForumPost.findById({type: postType}).sort({ date: -1 });
-      console.log(posts)
+      
+      let posts = await ForumPost.find({postType}).sort({ date: -1 });
       res.json(posts);
     } catch (err) {
       // console.error(err.message);
@@ -58,12 +92,13 @@ module.exports = (app) => {
     }
   });
   
-  app.get('/api/forum/post/:id', verify, async (req, res) => {
+  app.get('/api/forum/post/:type/:id', verify, async (req, res) => {
     try {
+      console.log('id: ', req.params.id)
       const post = await ForumPost.findById(req.params.id);
-  
+      console.log('post: ', post);
       if (!post) return res.status(400).json({ msg: 'Post not found' });
-  
+      
       res.json(post);
     } catch (err) {
       console.error(err.message);
@@ -100,19 +135,21 @@ module.exports = (app) => {
   });
 
   app.post(
-    'api/forum/post/comment/:id',
+    '/api/forum/post/comment/:id',
+    verify,
     async (req, res) => {
       try {
+        console.log(req.body)
         const user = await StudentUser.findById(req.user.id).select('-password');
         const post = await ForumPost.findById(req.params.id);
   
         const newComment = {
-          text: req.body.text,
+          text: req.body.reply,
           name: user.name,
           user: req.user.id,
         };
   
-        post.comments.unshift(newComment);
+        post.comments.push(newComment);
   
         await post.save();
   

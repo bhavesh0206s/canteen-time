@@ -3,7 +3,7 @@ import React from 'react'
 import Header from '../../common/header'
 import Subject from './subject/subject'
 
-const DashBoard = ({ match }) => {
+const DashBoardStudent = ({ match }) => {
   return (
     <div>
       <Container>
@@ -15,4 +15,4 @@ const DashBoard = ({ match }) => {
   )
 }
 
-export default DashBoard
+export default DashBoardStudent

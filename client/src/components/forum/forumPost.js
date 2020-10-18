@@ -1,6 +1,7 @@
-import { Avatar, Badge } from '@material-ui/core';
+import { Avatar, Badge, IconButton } from '@material-ui/core';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import CommentIcon from '@material-ui/icons/Comment';
 import './forumPost.css'
 
@@ -13,7 +14,7 @@ const ForumPost = ({item}) => {
           <span className="tag tag-teal">{item.postType || 'ALL'}</span>
           <small style={{textAlign: 'end'}}>{item.date.toString()}</small>
         </div>
-        <Link to={`/forum/${item.topic}/${item.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+        <Link to={`/forum/${item.postType}/${item._id.toString()}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
         <div style={{marginTop: 10}}>
           <h4 style={{fontSize: 20}}>{item.title}</h4>
           <p style={{fontSize: 20}}>{item.detail}</p>
@@ -26,7 +27,7 @@ const ForumPost = ({item}) => {
           </div>
           <Link to={`/forum/${item.postType}/${item._id.toString()}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <div className="user-info__comment">
-              <Badge color="secondary" badgeContent={0} showZero>
+              <Badge color="secondary" badgeContent={item.comments.length} showZero>
                 <CommentIcon />
               </Badge>
             </div>

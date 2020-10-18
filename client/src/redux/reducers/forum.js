@@ -1,27 +1,30 @@
 import {
-  REGISTER_SUCCESS,
-  REGISTER_FAIL,
-  AUTH_ERROR,
-  USER_LOADED,
-  LOGIN_SUCCESS,
-  LOGIN_FAIL,
-  LOGOUT,
-  ADD_FORUM_POST,
+  GET_SUB_FORUM_LIST,
   SHOW_FORUM_POST,
+  SHOW_SPECIFIC_POST,
   SHOW_TOPIC_WISE_FORUM_POST,
-  // ACCOUNT_DELETED,
 } from "../actions/types";
 
-const initialState = [];
+const initialState = {
+  allPosts: [],
+  specificPosts: [],
+  specificPost: {},
+  postComments: [],
+  subForumList: []
+};
 
 export default (state = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
     case SHOW_FORUM_POST:
-      return payload;
+      return {...state, allPosts: payload};
     case SHOW_TOPIC_WISE_FORUM_POST:
-      return payload;
+      return {...state, specificPosts: payload};
+    case SHOW_SPECIFIC_POST:
+      return {...state, payload, specificPost: payload, postComments: payload.comments};
+    case GET_SUB_FORUM_LIST:
+      return {...state, subForumList: payload};
     default:
       return state;
   }

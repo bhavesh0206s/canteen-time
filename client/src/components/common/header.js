@@ -51,7 +51,7 @@ export default function Header (props) {
             </Button>
           </Link>
           <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button onClick={handleLogout} color='secondary'>
+            <Button variant='contained' onClick={handleLogout} color='secondary'>
               Logout
             </Button>
           </Link>

@@ -12,6 +12,11 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { Button, TextField } from "@material-ui/core";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addSubForums, fetchSubForums } from "../../redux/actions/forum";
+import { useState } from "react";
 
 const subjects = [
   'Math',
@@ -23,8 +28,56 @@ const subjects = [
 ]
 
 const Topics = ({ topic }) => {
+  const [textField, openTextField] = useState(false);
+  const [text, setText] = useState('');
+  const dispatch = useDispatch();
+  const subjects = useSelector(state => state.forum.subForumList);
+
+  const handleSubmit= (e) =>{
+    e.preventDefault();
+    openTextField(false)
+    dispatch(addSubForums(text))
+  }
+
+  useEffect(()=>{
+    dispatch(fetchSubForums())
+  },[]);
+
   return (
       <List>
+        <div style={{margin: 10}}>
+          {!textField && (
+            <Button onClick={()=> openTextField(true)} variant="contained" color="primary">
+              Create SubForum
+            </Button>
+          )}
+          {textField && (
+            <form onSubmit={handleSubmit} noValidate >
+              <div>
+                <TextField
+                  id="outlined-multiline-static"
+                  label="Type Subject Name..."
+                  variant="outlined"
+                  required
+                  value={text}
+                  onChange={(e) => setText(e.target.value)}
+                />
+              </div>
+              <div style={{marginTop: 5, display: 'flex'}}>
+                <div>
+                  <Button variant="contained" color="primary" type="submit" >
+                    Submit
+                  </Button>
+                </div>
+                <div style={{marginLeft: 22}}>
+                  <Button variant="contained" color="secondary" onClick={() => openTextField(!textField)}>
+                    Cancel
+                  </Button>
+                </div>
+              </div>
+            </form>
+          )}
+        </div>
         <Link to={`/forum`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <ListItem button key='All'>
               <ListItemIcon><MenuBookIcon /></ListItemIcon>
