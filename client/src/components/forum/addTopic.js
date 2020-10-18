@@ -4,6 +4,8 @@ import Drawer from '@material-ui/core/Drawer';
 import { Button, Menu,  MenuItem, TextField } from '@material-ui/core';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import AssignmentTurnedInSharpIcon from '@material-ui/icons/AssignmentTurnedInSharp';
+import { useDispatch } from 'react-redux';
+import { addForumPost } from '../../redux/actions/forum';
 
 const useStyles = makeStyles((theme) =>( {
   list: {
@@ -36,10 +38,13 @@ const subjects = [
 
 const AddTopic = ({openAddTopic, handleAddDrawer}) => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const [selectedTopic, setSelectedTopic] = useState('')
   const [anchorEl, setAnchorEl] = useState(null);
-
+  const [formData, setFormData] = useState({
+    title: '',
+    detail: '',
+  });
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -49,8 +54,13 @@ const AddTopic = ({openAddTopic, handleAddDrawer}) => {
     setAnchorEl(null);
   };
 
-  const handleSubmit = () => {
+  const onChangeHandler = (e) =>{
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addForumPost(formData, selectedTopic))
   }
 
   const renderMenu = () => (
@@ -79,21 +89,35 @@ const AddTopic = ({openAddTopic, handleAddDrawer}) => {
         <div style={{margin: 15}}>
           <h2>Create a new Topic</h2>
         </div>
-        <form className={classes.root} noValidate autoComplete="on">
+        <form onSubmit={handleSubmit} className={classes.root} noValidate autoComplete="on">
           <div>
-            <TextField className={classes.textField} fullWidth id="outlined-basic" label="Type title" variant="outlined" />
+            <TextField 
+              className={classes.textField} 
+              fullWidth 
+              name="title"
+              id="outlined-basic" 
+              label="Type title" 
+              variant="outlined" 
+              required
+              value={formData.title}
+              onChange={(e) => onChangeHandler(e)}
+            />
             {renderMenu()}
             <TextField
               id="outlined-multiline-static"
               label="Type Details here...."
               multiline
+              name="detail"
               rows={4}
               className={classes.textField}
               variant="outlined"
+              required
+              value={formData.detail}
+              onChange={(e) => onChangeHandler(e)}
             />
           </div>
           <div style={{margin: 20}}>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>
+            <Button type="submit" variant="contained" color="primary">
               <AssignmentTurnedInSharpIcon />
               Submit
             </Button>

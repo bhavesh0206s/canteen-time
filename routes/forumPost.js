@@ -7,17 +7,22 @@ module.exports = (app) => {
 
   app.post(
     '/api/forum/post/:type',
+    verify,
     async (req, res) => {
       try {
         const postType = req.params.type;
+
         const user = await StudentUser.findById(req.user.id).select('-password');
 
-        const newPost = new ForumPost({
-          type: postType,
-          text: req.body.text,
+        const fields = {
+          postType,
+          title: req.body.title,
+          detail: req.body.detail,
           name: user.name,
-          user: req.user.id, // the user={id:fdmfmldm} which comes with token
-        });
+          user: req.user.id, 
+        }
+        console.log(fields)
+        const newPost = new ForumPost(fields);
   
         const post = await newPost.save();
   
@@ -30,15 +35,22 @@ module.exports = (app) => {
     }
   );
   
+  app.get('/api/forum/post', verify, async (req, res) => {
+    try {
+      posts = await ForumPost.find().sort({ date: -1 });
+      res.json(posts);
+    } catch (err) {
+      // console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
+
   app.get('/api/forum/post/:type', verify, async (req, res) => {
     try {
       const postType = req.params.type;
-      let posts;
-      if(postType === 'all'){
-        posts = await ForumPost.find().sort({ date: -1 });
-      }else{
-        posts = await ForumPost.findById({type: postType}).sort({ date: -1 });
-      }
+     
+      let posts = await ForumPost.findById({type: postType}).sort({ date: -1 });
+      console.log(posts)
       res.json(posts);
     } catch (err) {
       // console.error(err.message);

@@ -17,6 +17,8 @@ import AddTopic from './addTopic'
 import SelectedTopicDetails from './selectedTopicDetails'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
 import IconButton from '@material-ui/core/IconButton'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllForumPost } from '../../redux/actions/forum'
 
 const defaultProps = {
   bgcolor: 'background.paper',
@@ -85,14 +87,20 @@ const recentQandA = [
 ]
 
 const Forum = ({ match }) => {
-  const classes = useStyles()
-  const location = useLocation()
-  const [hideMain, setHideMain] = useState(false)
-  const [openAddTopic, setOpenAddTopic] = useState(false)
+  const classes = useStyles();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  const [hideMain, setHideMain] = useState(false);
+  const [openAddTopic, setOpenAddTopic] = useState(false);
+  const forumPost = useSelector(state => state.forum);
 
   const handleAddDrawer = () => {
     setOpenAddTopic(!openAddTopic)
   }
+
+  useEffect(() => {
+    dispatch(fetchAllForumPost())
+  },[])
 
   useEffect(() => {
     if (location.pathname !== '/forum') {
@@ -102,21 +110,31 @@ const Forum = ({ match }) => {
     }
   }, [location.pathname])
 
-
   return (
     <div className={classes.root} style={{ marginTop: 20 }}>
       <CssBaseline />
       <AppBar position='fixed' className={classes.appBar}>
         <Toolbar>
-          <Button color='inherit' href='http://localhost:3000/'>
-            Dashboard
-          </Button>
-          <Button color='inherit' href='http://localhost:3000/forum'>
-            Forum
-          </Button>
-          <Button color='inherit' href='http://localhost:3000/announcement'>
-            Announcment
-          </Button>
+          <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Dashboard
+            </Button>
+          </Link>
+          <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Forum
+            </Button>
+          </Link>
+          <Link to='/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Announcment
+            </Button>
+          </Link>
+          <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='secondary'>
+              Logout
+            </Button>
+          </Link>
           <div style={{ paddingLeft: 30 }}>
             <Button
               variant='contained'
@@ -144,7 +162,7 @@ const Forum = ({ match }) => {
         }}
         anchor='left'
       >
-        <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+        <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
           <IconButton className={classes.backBtn} color='primary'>
             <ArrowBackIcon />
           </IconButton>
@@ -157,7 +175,7 @@ const Forum = ({ match }) => {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div className='container'>
-          {!hideMain && recentQandA.map(item => <ForumPost item={item} />)}
+          {!hideMain && forumPost.map(item => <ForumPost item={item} />)}
           <Switch>
             <Route exact path='/forum/:topics' component={TopicDetails} />
             <Route path='/forum/:topics/:id' component={SelectedTopicDetails} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Grid } from '@material-ui/core'
 import SubCard from './subCard'
-import Header from '../../common/header'
+import AddSub from './addSub'
 
 const Subject = () => {
   return (
@@ -20,6 +20,7 @@ const Subject = () => {
           <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
           <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
           <SubCard subject='SS' teacher='Prof. Maulin Joshi' />
+          <AddSub/>
         </Grid>
       </Container>
     </div>

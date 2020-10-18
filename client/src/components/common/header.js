@@ -5,6 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../redux/actions/auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,21 +24,37 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Header (props) {
-  const classes = useStyles()
+  const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+  }
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.gradient} position='static'>
         <Toolbar>
-          <Button color='inherit' href='http://localhost:3000/'>
-            Dashboard
-          </Button>
-          <Button color='inherit' href='http://localhost:3000/forum'>
-            Forum
-          </Button>
-          <Button color='inherit' href='http://localhost:3000/announcement'>
-            Announcment
-          </Button>
+          <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Dashboard
+            </Button>
+          </Link>
+          <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Forum
+            </Button>
+          </Link>
+          <Link to='/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button color='inherit'>
+              Announcment
+            </Button>
+          </Link>
+          <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+            <Button onClick={handleLogout} color='secondary'>
+              Logout
+            </Button>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

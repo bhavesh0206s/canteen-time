@@ -6,7 +6,11 @@ const ForumPostSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'studentUser'
   },
-  text: {
+  title: {
+    type: String,
+    required: true
+  },
+  detail: {
     type: String,
     required: true
   },

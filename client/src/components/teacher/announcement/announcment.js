@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Grid } from '@material-ui/core'
-import Header from '../../common/header'
+import Header from '../header'
 import AnnouncementList from './announcementList'
 
 const Announcement = () => {

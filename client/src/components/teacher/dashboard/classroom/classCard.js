@@ -6,8 +6,9 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import DeleteIcon from '@material-ui/icons/Delete'
 
-const SubCard = props => {
+const ClassCard = props => {
   return (
     <Grid item>
       <Card style={{ maxWidth: 350, minWidth: 300 }}>
@@ -17,16 +18,13 @@ const SubCard = props => {
               {props.subject}
             </Typography>
             <Typography variant='body2' color='textSecondary' component='p'>
-              {props.teacher}
+              Std:{props.standard}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size='small' color='primary'>
-            Resources
-          </Button>
-          <Button size='small' color='primary'>
-            Forum
+          <Button size='small' color='secondary' startIcon={<DeleteIcon />}>
+            Delete
           </Button>
         </CardActions>
       </Card>
@@ -34,4 +32,4 @@ const SubCard = props => {
   )
 }
 
-export default SubCard
+export default ClassCard

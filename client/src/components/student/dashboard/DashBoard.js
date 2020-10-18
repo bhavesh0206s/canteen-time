@@ -1,15 +1,14 @@
 import { Container, Grid } from '@material-ui/core'
 import React from 'react'
-import SubCard from '../subject/subCard'
 import Header from '../../common/header'
-import Subject from '../subject/subject'
+import Subject from './subject/subject'
 
 const DashBoard = ({ match }) => {
   return (
     <div>
       <Container>
         <Header />
-        <div style={{ height: 75 }} />
+        <div style={{ height: 10 }} />
         <Subject />
       </Container>
     </div>
