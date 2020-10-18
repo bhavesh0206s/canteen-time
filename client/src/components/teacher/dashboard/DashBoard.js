@@ -6,7 +6,7 @@ const DashBoardTeacher = ({ match }) => {
   return (
     <div>
       <Container>
-        <Grid container spacing={10} justify='center'>
+        <Grid container justify='center'>
           {/* replace this and Loop/Map through all subject overhere */}
           <Classrooms />
         </Grid>

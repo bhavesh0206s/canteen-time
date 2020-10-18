@@ -7,6 +7,7 @@ import Forum from './components/forum/forum'
 // import DashBoard from "./components/student/dashboard/DashBoard";
 import DashBoard from './components/student/dashboard/DashBoard'
 import Announcement from './components/student/announcement/announcment'
+import AnnouncementTeacher from './components/teacher/announcement/announcment'
 import Landing from './components/common/Landing'
 import DashBoardStudent from './components/student/dashboard/DashBoard'
 import DashBoardTeacher from './components/teacher/dashboard/DashBoard'
@@ -27,6 +28,7 @@ function App () {
           <Route exact path='/student/dashboard' component={DashBoardStudent} />
           <Route exact path='/teacher/dashboard' component={DashBoardTeacher} />
           <Route exact path='/announcement' component={Announcement} />
+          <Route exact path='/teacher/announcement' component={AnnouncementTeacher} />
           <Route path='/forum' component={Forum} />
           {/* <Route exact path="/profiles" component={Profiles} /> */}
           {/* <Route exact path="/profile/:id" component={Profile} /> */}
