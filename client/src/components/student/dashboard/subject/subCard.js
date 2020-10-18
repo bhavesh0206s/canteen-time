@@ -6,8 +6,9 @@ import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import { Link } from 'react-router-dom'
 
-const SubCard = props => {
+const SubCard = ({ teacher, subject, match, classroom }) => {
   return (
     <Grid item>
       <Card
@@ -16,24 +17,31 @@ const SubCard = props => {
           minWidth: 300
         }}
       >
-        <CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='h2'>
-              {props.subject}
-            </Typography>
-            <Typography variant='body2' color='textSecondary' component='p'>
-              {props.teacher}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size='small' color='primary'>
-            Resources
-          </Button>
-          <Button size='small' color='primary'>
-            Forum
-          </Button>
-        </CardActions>
+        <Link
+          to={{
+            pathname: `/student/classroom/${classroom.classRoomCode}`,
+            state: classroom
+          }}
+        >
+          <CardActionArea>
+            <CardContent>
+              <Typography gutterBottom variant='h5' component='h2'>
+                {subject}
+              </Typography>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                {teacher}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size='small' color='primary'>
+              Resources
+            </Button>
+            <Button size='small' color='primary'>
+              Forum
+            </Button>
+          </CardActions>
+        </Link>
       </Card>
     </Grid>
   )

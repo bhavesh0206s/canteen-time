@@ -1,5 +1,12 @@
 import React, { useState } from 'react'
-import { Grid, TextField, Button } from '@material-ui/core'
+import {
+  Grid,
+  TextField,
+  Button,
+  AppBar,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
 import image from '../../assets/images/sign-up.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { register } from '../../redux/actions/auth'
@@ -67,6 +74,23 @@ function Signup ({ match }) {
   } else if (match.params.user === 'student') {
     return (
       <div>
+        <AppBar position='static'>
+          <Toolbar>
+            <Link to={`/`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+              <div style={{paddingRight: 20}}>
+                <Button
+                  color='primary'
+                  variant='contained'
+                  type='submit'
+                  value='Register'
+                >
+                  Home
+                </Button>
+              </div>
+            </Link>
+            <Typography variant='h6'>Sign-Up as {match.params.user}</Typography>
+          </Toolbar>
+        </AppBar>
         <Grid container alignItems='center' style={{ minHeight: '100vh' }}>
           <Grid item xs={12} sm={6} justify='center'>
             <img
@@ -85,19 +109,21 @@ function Signup ({ match }) {
             justify='space-between'
             style={{ padding: 10 }}
           >
+            <div />
+
             <div>
               <form
                 className='form'
                 action='create-profile.html'
                 onSubmit={e => onSubmitHandler(e)}
-                style={{ display: 'flex', flexDirection: 'column', width: 500 }}
+                style={{ display: 'flex', flexDirection: 'column', width: 400 }}
               >
                 <TextField
                   label='Name'
                   margin='normal'
-                  variant="filled"
                   type='text'
                   name='name'
+                  variant='filled'
                   required
                   value={formdata.name}
                   onChange={e => onChangeHandler(e)}
@@ -106,8 +132,8 @@ function Signup ({ match }) {
                   label='Password'
                   margin='normal'
                   type='password'
+                  variant='filled'
                   name='password'
-                  variant="filled"
                   minLength='6'
                   value={formdata.password}
                   onChange={e => onChangeHandler(e)}
@@ -116,7 +142,7 @@ function Signup ({ match }) {
                 <TextField
                   label='Standard'
                   margin='normal'
-                  variant="filled"
+                  variant='filled'
                   type='string'
                   name='standard'
                   required
@@ -125,8 +151,8 @@ function Signup ({ match }) {
                 />
                 <TextField
                   label='Email'
+                  variant='filled'
                   margin='normal'
-                  variant="filled"
                   type='email'
                   value={formdata.email}
                   onChange={e => onChangeHandler(e)}
@@ -135,12 +161,12 @@ function Signup ({ match }) {
                 />
                 <TextField
                   label='School'
+                  variant='filled'
                   margin='normal'
                   type='text'
                   value={formdata.school}
                   onChange={e => onChangeHandler(e)}
                   name='school'
-                  variant="filled"
                   required
                 />
                 <Button
@@ -154,13 +180,15 @@ function Signup ({ match }) {
               </form>
               <div style={{ height: 20 }} />
               <div style={{ height: 20 }} />
+             
               <Link to={`/${match.params.user}/login`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                 <Button
                   color='inherit'
                   variant='contained'
                   type='submit'
+                  value='Register'
                 >
-                  Sign up
+                  Login
                 </Button>
               </Link>
             </div>
@@ -172,6 +200,11 @@ function Signup ({ match }) {
   } else {
     return (
       <div>
+        <AppBar position='static'>
+          <Toolbar>
+            <Typography variant='h6'>Sign-Up as {match.params.user}</Typography>
+          </Toolbar>
+        </AppBar>
         <Grid container alignItems='center' style={{ minHeight: '100vh' }}>
           <Grid item xs={12} sm={6} justify='center'>
             <img
@@ -197,25 +230,26 @@ function Signup ({ match }) {
                 className='form'
                 action='create-profile.html'
                 onSubmit={e => onSubmitHandler(e)}
-                style={{ display: 'flex', flexDirection: 'column', width: 500 }}
+                style={{ display: 'flex', flexDirection: 'column', width: 400 }}
               >
                 <TextField
                   label='Name'
                   margin='normal'
                   type='text'
+                  variant='filled'
                   name='name'
-                  variant="filled"
                   required
                   value={formdata.name}
                   onChange={e => onChangeHandler(e)}
+                 
                 />
                 <TextField
                   label='Password'
                   margin='normal'
                   type='password'
+                  variant='filled'
                   name='password'
                   minLength='6'
-                  variant="filled"
                   value={formdata.password}
                   onChange={e => onChangeHandler(e)}
                   required
@@ -223,18 +257,18 @@ function Signup ({ match }) {
                 <TextField
                   label='Qualification'
                   margin='normal'
-                  variant="filled"
                   type='text'
                   name='qualification'
                   required
+                  variant='filled'
                   value={formdata.qualification}
                   onChange={e => onChangeHandler(e)}
                 />
                 <TextField
                   label='Email'
                   margin='normal'
+                  variant='filled'
                   type='email'
-                  variant="filled"
                   value={formdata.email}
                   onChange={e => onChangeHandler(e)}
                   name='email'
@@ -242,8 +276,8 @@ function Signup ({ match }) {
                 />
                 <TextField
                   label='Specialization'
+                  variant='filled'
                   margin='normal'
-                  variant="filled"
                   type='text'
                   value={formdata.specialization}
                   onChange={e => onChangeHandler(e)}
@@ -261,25 +295,16 @@ function Signup ({ match }) {
               </form>
               <div style={{ height: 20 }} />
               <div style={{ height: 20 }} />
-              {/* <Link
-              component="button"
-              variant="body2"
-              onClick={() => {
-                console.info("Login");
-              }}
-            >
-              Or Login
-            </Link> */}
-            <Link to={`/${match.params.user}/login`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
+              <Link to={`/${match.params.user}/login`} style={{ color: 'inherit', textDecoration: 'inherit' }}>
                 <Button
                   color='inherit'
                   variant='contained'
                   type='submit'
+                  value='Register'
                 >
                   Login
                 </Button>
               </Link>
-              {/* <Link to={`/${match.params.user}/login`}> Login </Link> */}
             </div>
             <div />
           </Grid>

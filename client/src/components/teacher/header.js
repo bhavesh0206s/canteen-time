@@ -5,8 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/auth'
+import { useDispatch } from 'react-redux'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,31 +24,28 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Header (props) {
-  const classes = useStyles()
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(logout());
-  }
+  const dispatch = useDispatch()
 
+  const classes = useStyles()
+  const handleLogout = () => {
+    dispatch(logout())
+  }
   return (
     <div className={classes.root}>
       <AppBar className={classes.gradient} position='static'>
         <Toolbar>
-          <Link to='/teacher/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='inherit'>
-              Dashboard
-            </Button>
+          <Button
+            color='inherit'
+            href='http://localhost:3000/teacher/dashboard'
+          >
+            Dashboard
+          </Button>
+          <Link to='/teacher/announcement'>
+            <Button color='inherit'>Announcement</Button>
           </Link>
-          <Link to='/teacher/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='inherit'>
-              Announcment
-            </Button>
-          </Link>
-          <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button variant='contained' onClick={handleLogout} color='secondary'>
-              Logout
-            </Button>
-          </Link>
+          <Button onClick={handleLogout} color='secondary'>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

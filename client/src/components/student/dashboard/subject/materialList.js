@@ -2,12 +2,13 @@ import React from 'react'
 import { Grid } from '@material-ui/core'
 import SubMaterial from './subMaterial'
 
-const MaterialList = () => {
+const MaterialList = ({ state }) => {
+  console.log(state)
   return (
     <Grid container spacing={4} justify='center'>
-      <SubMaterial fileName='Notes for mid-sem' />
-      <SubMaterial fileName='Notes of ch-2' />
-      <SubMaterial fileName='Ch-5 PPT' />
+      {state.fileLinks.map(item => (
+        <SubMaterial filename={item.title} filelink={item.link} />
+      ))}
     </Grid>
   )
 }

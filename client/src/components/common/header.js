@@ -35,17 +35,17 @@ export default function Header (props) {
     <div className={classes.root}>
       <AppBar className={classes.gradient} position='static'>
         <Toolbar>
-          <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <Link to='/student/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button color='inherit'>
               Dashboard
             </Button>
           </Link>
-          <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <Link to='/student/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button color='inherit'>
               Forum
             </Button>
           </Link>
-          <Link to='/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
+          <Link to='/student/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button color='inherit'>
               Announcment
             </Button>

@@ -6,11 +6,14 @@ import Header from './components/common/header'
 import Forum from './components/forum/forum'
 // import DashBoard from "./components/student/dashboard/DashBoard";
 import DashBoard from './components/student/dashboard/DashBoard'
-import Announcement from './components/student/announcement/announcment'
-import AnnouncementTeacher from './components/teacher/announcement/announcment'
+import AnnouncementStudent from './components/student/announcement/announcment'
+import AnnouncementTeacher from './components/teacher/announcement/announcement'
 import Landing from './components/common/Landing'
 import DashBoardStudent from './components/student/dashboard/DashBoard'
 import DashBoardTeacher from './components/teacher/dashboard/DashBoard'
+import MaterialPage from './components/teacher/dashboard/classroom/material/materialPage'
+import SubPage from './components/student/dashboard/subject/subPage'
+// import DashBoardStudent from './components/student/dashboard/DashBoard'
 
 function App () {
   return (
@@ -27,8 +30,32 @@ function App () {
           {/* <Route exact path="/dashboard" component={DashBoard} /> */}
           <Route exact path='/student/dashboard' component={DashBoardStudent} />
           <Route exact path='/teacher/dashboard' component={DashBoardTeacher} />
-          <Route exact path='/announcement' component={Announcement} />
-          <Route exact path='/teacher/announcement' component={AnnouncementTeacher} />
+          <Route
+            exact
+            path='/teacher/classroom/:classroomcode'
+            component={MaterialPage}
+          />
+          <Route
+            exact
+            path='/student/classroom/:classroomcode'
+            component={SubPage}
+          />
+          <Route
+            exact
+            path='/student/classroom/:classroomcode'
+            component={DashBoardTeacher}
+          />
+          <Route
+            exact
+            path='/student/announcement'
+            component={AnnouncementStudent}
+          />
+          <Route
+            exact
+            path='/teacher/announcement'
+            component={AnnouncementTeacher}
+          />
+
           <Route path='/forum' component={Forum} />
           {/* <Route exact path="/profiles" component={Profiles} /> */}
           {/* <Route exact path="/profile/:id" component={Profile} /> */}

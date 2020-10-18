@@ -7,32 +7,23 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 
-const AnnouncementCard = props => {
+const AnnouncementCard = ({ title, description }) => {
   return (
     <Grid item>
       <Card style={{ marginTop: 10 }}>
         <CardActionArea>
           <CardContent>
             <Grid container direction='row'>
-              <Typography gutterBottom component='h4'>
-                {props.subject}
-              </Typography>
-              <div style={{ width: 5 }}></div>
-              <Typography variant='body2' color='textSecondary'>
-                by {props.teacher}
+              <Typography gutterBottom variant='h5' component='h4'>
+                {title}
               </Typography>
             </Grid>
 
-            <Typography gutterBottom variant='h5' component='h4'>
-              {props.announcement}
+            <Typography gutterBottom component='h4'>
+              {description}
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button size='small' color='primary' variant='contained'>
-            More Details
-          </Button>
-        </CardActions>
       </Card>
     </Grid>
   )
