@@ -7,26 +7,34 @@ import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { Link } from 'react-router-dom'
 
-const ClassCard = props => {
+const ClassCard = ({ classroom, standard, subject, match }) => {
   return (
     <Grid item>
       <Card style={{ maxWidth: 350, minWidth: 300 }}>
-        <CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant='h5' component='h2'>
-              {props.subject}
-            </Typography>
-            <Typography variant='body2' color='textSecondary' component='p'>
-              Std:{props.standard}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size='small' color='secondary' startIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </CardActions>
+        <Link
+          to={{
+            pathname: `/teacher/classroom/${classroom.classRoomCode}`,
+            state: classroom
+          }}
+        >
+          <CardActionArea>
+            <CardContent>
+              <Typography gutterBottom variant='h5' component='h2'>
+                {subject}
+              </Typography>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                Std:{standard}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size='small' color='secondary' startIcon={<DeleteIcon />}>
+              Delete
+            </Button>
+          </CardActions>
+        </Link>
       </Card>
     </Grid>
   )

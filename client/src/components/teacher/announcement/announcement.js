@@ -3,7 +3,7 @@ import { Container, Grid } from '@material-ui/core'
 import Header from '../header'
 import AnnouncementList from './announcementList'
 
-const Announcement = () => {
+const AnnouncementTeacher = () => {
   return (
     <div>
       <Container>
@@ -15,4 +15,4 @@ const Announcement = () => {
   )
 }
 
-export default Announcement
+export default AnnouncementTeacher

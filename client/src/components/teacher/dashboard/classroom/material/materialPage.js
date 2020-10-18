@@ -18,9 +18,9 @@ const useStyles = makeStyles({
   }
 })
 
-const MaterialPage = props => {
+const MaterialPage = ({ location: { state } }) => {
   const classes = useStyles()
-
+  console.log(state)
   return (
     <Container>
       <AppBar className={classes.gradient}>
@@ -28,17 +28,13 @@ const MaterialPage = props => {
           <IconButton color='inherit'>
             <ArrowBackIcon />
           </IconButton>
-          <Typography variant='h6'>{props.subject}</Typography>
+          <Typography variant='h6'>{state.classRoomName}</Typography>
         </Toolbar>
       </AppBar>
       <div style={{ height: 75 }} />
-      <MaterialList />
+      <MaterialList state={state} />
     </Container>
   )
-}
-
-MaterialPage.defaultProps = {
-  subject: 'Subject Name Here'
 }
 
 export default MaterialPage

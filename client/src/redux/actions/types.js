@@ -9,18 +9,15 @@ export const LOGOUT = "LOGOUT";
 export const ADD_FORUM_POST = "ADD_FORUM_POST";
 export const SHOW_FORUM_POST = "SHOW_FORUM_POST";
 export const SHOW_TOPIC_WISE_FORUM_POST = "SHOW_TOPIC_WISE_FORUM_POST";
+export const T_CLASSLIST = "T_CLASSLIST";
+export const S_CLASSLIST = "S_CLASSLIST";
+export const ADDANNOUNCEMENT = "ADDANNOUNCEMENT";
+export const ADDFILELINK = "ADDFILELINK";
+export const CREATECLASSROOM = "CREATECLASSROOM";
+export const JOINCLASSROOM = "JOINCLASSROOM";
 // export const SET_ALERT = "SET_ALERT";
 // export const SET_ALERT = "SET_ALERT";
 // export const SET_ALERT = "SET_ALERT";
 // export const SET_ALERT = "SET_ALERT";
 // export const SET_ALERT = "SET_ALERT";
 // export const SET_ALERT = "SET_ALERT";
-
-// REGISTER_FAIL,
-// REGISTER_SUCCESS,
-// AUTH_ERROR,
-// USER_LOADED,
-// LOGIN_SUCCESS,
-// LOGIN_FAIL,
-// LOGOUT,
-// CLEAR_PROFILE,

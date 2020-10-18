@@ -10,13 +10,13 @@ import { logout } from '../../redux/actions/auth'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2)
   },
   gradient: {
-    background: 'linear-gradient(to right, #001510, #00bf8f)',
+    background: 'linear-gradient(to right, #001510, #00bf8f)'
   },
   title: {
     flexGrow: 1
@@ -24,31 +24,34 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Header (props) {
-  const classes = useStyles();
-  const dispatch = useDispatch();
+  const classes = useStyles()
+  const dispatch = useDispatch()
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
   }
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.gradient} position='static'>
         <Toolbar>
-          <Link to='/dashboard' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='inherit'>
-              Dashboard
-            </Button>
+          <Link
+            to='/dashboard'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <Button color='inherit'>Dashboard</Button>
           </Link>
-          <Link to='/forum' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='inherit'>
-              Forum
-            </Button>
+          <Link
+            to='/forum'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <Button color='inherit'>Forum</Button>
           </Link>
-          <Link to='/announcement' style={{ color: 'inherit', textDecoration: 'inherit' }}>
-            <Button color='inherit'>
-              Announcment
-            </Button>
+          <Link
+            to='/student/announcement'
+            style={{ color: 'inherit', textDecoration: 'inherit' }}
+          >
+            <Button color='inherit'>Announcment</Button>
           </Link>
           <Link to='/' style={{ color: 'inherit', textDecoration: 'inherit' }}>
             <Button onClick={handleLogout} color='secondary'>

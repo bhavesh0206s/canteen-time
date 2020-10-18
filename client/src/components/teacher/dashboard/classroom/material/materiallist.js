@@ -3,13 +3,14 @@ import { Grid } from '@material-ui/core'
 import MaterialCard from './materialCard'
 import AddMaterial from './addMaterial'
 
-const MaterialList = () => {
+const MaterialList = ({ state }) => {
   return (
     <Grid container spacing={4} justify='center'>
       <AddMaterial />
-      <MaterialCard fileName='Notes for mid-sem' />
-      <MaterialCard fileName='Notes of ch-2' />
-      <MaterialCard fileName='Ch-5 PPT' />
+      {state.fileLinks.map(file => (
+        <MaterialCard filename={file.title} filelink={file.link} />
+      ))}
+
       <AddMaterial />
     </Grid>
   )

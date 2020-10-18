@@ -3,26 +3,26 @@ import { Container, Grid } from '@material-ui/core'
 import ClassCard from './classCard'
 import AddClass from './addClass'
 import Header from '../../header'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Classrooms = () => {
+const Classrooms = ({ match }) => {
+  const myclassrooms = useSelector(state => state.classroom.myclassrooms)
+
   return (
     <div>
       <Container>
         <Header />
         <div style={{ height: 10 }} />
         <Grid container spacing={2} justify='center'>
-          {/* replace this and Loop/Map through all subject overhere */}
-          <ClassCard subject='RA' standard={1} />
-          <ClassCard subject='RA' standard={2} />
-          <ClassCard subject='RA' standard={3} />
-          <ClassCard subject='RA' standard={4} />
-          <ClassCard subject='RA' standard={5} />
-          <ClassCard subject='RA' standard={6} />
-          <ClassCard subject='RA' standard={7} />
-          <ClassCard subject='RA' standard={8} />
-          <ClassCard subject='RA' standard={9} />
-          <ClassCard subject='RA' standard={10} />
-
+          {myclassrooms.map(classroom => (
+            <ClassCard
+              subject={classroom.classRoomName}
+              classroom={classroom}
+              // classroom={classroom}
+              standard={2}
+              match={match}
+            />
+          ))}
           <AddClass />
         </Grid>
       </Container>
@@ -31,3 +31,4 @@ const Classrooms = () => {
 }
 
 export default Classrooms
+// myclassrooms.map((classroom) => ())}

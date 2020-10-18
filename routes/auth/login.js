@@ -34,7 +34,7 @@ module.exports = (app) => {
       }
 
       let user = await TheModelType.findOne({ email });
-      console.log(user)
+
       // See if user exits
       if (!user) {
         return res
@@ -58,6 +58,8 @@ module.exports = (app) => {
       let payload = {
         user: {
           id: user._id,
+          name: user.name,
+          email: user.email,
         },
       };
 

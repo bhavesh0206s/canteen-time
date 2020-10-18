@@ -14,7 +14,7 @@ const useStyles = makeStyles({
   }
 })
 
-const MaterialCard = props => {
+const MaterialCard = ({ filename, filelink }) => {
   const classes = useStyles()
   return (
     <Grid item>
@@ -22,12 +22,12 @@ const MaterialCard = props => {
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant='h5' component='h2'>
-              {props.fileName}
+              {filename}
             </Typography>
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size='small' color='primary'>
+          <Button size='small' color='primary' href={filelink} target='_blank'>
             Download
           </Button>
         </CardActions>
